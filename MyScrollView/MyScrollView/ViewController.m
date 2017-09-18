@@ -10,7 +10,7 @@
 #import "MyScrollView.h"
 
 @interface ViewController ()
-@property (nonatomic) UIView* boundsView;
+@property (nonatomic) MyScrollView *myScrollView;
 
 @end
 
@@ -18,16 +18,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    MyScrollView *myScrollView = [[MyScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    //we are making sure that gestures view and colou boxes are added on the same view so that they can be moved...
     
-    //set the UIView as the root view.
-    self.boundsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+   //set the myScrolView as the root view.
+    self.myScrollView = [[MyScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
-    [self.view addSubview:self.boundsView];
+    // making the scrollview longer.
+    self.myScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 750.0);
+    [self.view addSubview:self.myScrollView];
     [self makeShapes];
-    [self.view addSubview:myScrollView];
-    
     
 }
 
@@ -36,7 +35,7 @@
     //adjusting the bounds of Y and setting it as the new height
     CGRect adjustBounds = self.view.bounds;
     adjustBounds.origin.y += 100;
-    //move the root view down.
+    //move the bounds of the main root view down everything will look like it went up.
     self.view.bounds = adjustBounds;
     
 }
@@ -44,26 +43,26 @@
 
 -(void)makeShapes {
     
- CGRect redBox = CGRectMake(20, 20, 150, 200);
+    CGRect redBox = CGRectMake(20, 20, 150, 200);
     UIView *redBoxView = [[UIView alloc]initWithFrame:redBox];
     redBoxView.backgroundColor = [UIColor redColor];
-    [self.boundsView addSubview:redBoxView];
+    [self.myScrollView addSubview:redBoxView];
     
 
     CGRect greenBox = CGRectMake(150, 150, 150, 200);
     UIView *greenBoxView = [[UIView alloc]initWithFrame:greenBox];
     greenBoxView.backgroundColor =[UIColor greenColor];
-    [self.boundsView addSubview:greenBoxView];
+    [self.myScrollView addSubview:greenBoxView];
     
     CGRect blueBox = CGRectMake(40, 400, 200, 150);
     UIView *blueBoxView = [[UIView alloc]initWithFrame:blueBox];
     blueBoxView.backgroundColor = [UIColor blueColor];
-    [self.boundsView addSubview:blueBoxView];
+    [self.myScrollView addSubview:blueBoxView];
     
     //can just add cgrectmake into the frame to condense code.
     UIView *yellowBoxView = [[UIView alloc]initWithFrame:CGRectMake(100, 600, 180, 150)];
     yellowBoxView.backgroundColor = [UIColor yellowColor];
-    [self.boundsView addSubview:yellowBoxView];
+    [self.myScrollView addSubview:yellowBoxView];
 
 }
 

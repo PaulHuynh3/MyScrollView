@@ -13,14 +13,15 @@
 @end
 
 @implementation MyScrollView
-
+// we instantiate the gestures so that it can be used with the view controller.
 -(instancetype)initWithFrame:(CGRect)frame{
-
-    if (self =[super initWithFrame:frame]){
+    self = [super initWithFrame:frame];
+    
+    if (self){
     
     _panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(movementPan:)];
         self.userInteractionEnabled = YES;
-        [self addGestureRecognizer:_panGesture];
+        [self addGestureRecognizer:self.panGesture];
         _yCoordinate = 0;
     }
     return self;
@@ -31,9 +32,9 @@
 -(void)movementPan:(UIPanGestureRecognizer*)sender{
     self.yCoordinate = [sender translationInView:self].y;
     
-    //self.bounds = CGRectMake(0, -self.translationY, self.frame.size.width, self.frame.size.height);
-    
-
+    //we want the screen to go down thus we are only modifying the coordinates of Y.
+    //its not self.view (as we are not in the view controller)
+    self.bounds = CGRectMake(0, self.yCoordinate, self.frame.size.width, self.frame.size.height);
 
 }
 
