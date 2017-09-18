@@ -22,8 +22,10 @@
 
 
 - (void)viewDidAppear:(BOOL)animated {
-
-    
+    //adjusting the bounds of Y and setting it as the new height
+    CGRect adjustBounds = self.view.bounds;
+    adjustBounds.origin.y += 100;
+    self.view.bounds = adjustBounds;
     
 }
 
@@ -46,11 +48,12 @@
     blueBoxView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:blueBoxView];
     
-    CGRect yellowBox = CGRectMake(100, 600, 180, 150);
-    UIView *yellowBoxView = [[UIView alloc]initWithFrame:yellowBox];
+    //can just add cgrectmake into the frame to condense code.
+    UIView *yellowBoxView = [[UIView alloc]initWithFrame:CGRectMake(100, 600, 180, 150)];
     yellowBoxView.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:yellowBoxView];
 
+    
 }
 
 
