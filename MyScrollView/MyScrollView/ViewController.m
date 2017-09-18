@@ -16,14 +16,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self makeShapes];
+    
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated {
+
+    
+    
 }
+
+
+-(void)makeShapes {
+    
+ CGRect redBox = CGRectMake(20, 20, 150, 200);
+    UIView *redBoxView = [[UIView alloc]initWithFrame:redBox];
+    redBoxView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:redBoxView];
+    
+
+    CGRect greenBox = CGRectMake(150, 150, 150, 200);
+    UIView *greenBoxView = [[UIView alloc]initWithFrame:greenBox];
+    greenBoxView.backgroundColor =[UIColor greenColor];
+    [self.view addSubview:greenBoxView];
+    
+    CGRect blueBox = CGRectMake(40, 400, 200, 150);
+    UIView *blueBoxView = [[UIView alloc]initWithFrame:blueBox];
+    blueBoxView.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:blueBoxView];
+    
+    CGRect yellowBox = CGRectMake(100, 600, 180, 150);
+    UIView *yellowBoxView = [[UIView alloc]initWithFrame:yellowBox];
+    yellowBoxView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:yellowBoxView];
+
+}
+
 
 
 @end
